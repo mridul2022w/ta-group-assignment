@@ -1,0 +1,6 @@
+autocorrect
+langdetect
+deep_translator
+vaderSentiment
+wordcloud
+gensim
