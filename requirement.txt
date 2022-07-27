@@ -4,3 +4,6 @@ deep_translator
 vaderSentiment
 wordcloud
 gensim
+nltk
+pandas
+numpy
