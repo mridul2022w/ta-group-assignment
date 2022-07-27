@@ -20,6 +20,7 @@ from nltk.stem.wordnet import WordNetLemmatizer
 import string
 from pprint import pprint
 import matplotlib.pyplot as plt
+nltk.download('punkt')
 
 
 def textClean(text0):
@@ -101,8 +102,8 @@ def build_gamma_df(lda_model, corpus0):
 def call_ltm_model(uber_review):
     
     #keeping only required coulmn
-    uber_review=uber_review[['Review_new3']]
-    uber_review=uber_review.rename(columns={'Review_new3':'Review'})
+    uber_review=uber_review[['Review_new']]
+    uber_review=uber_review.rename(columns={'Review_new':'Review'})
 
 
     #converting dataframe to list

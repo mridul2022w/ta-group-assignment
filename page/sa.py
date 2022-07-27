@@ -9,6 +9,7 @@ from nltk import sent_tokenize, word_tokenize
 import matplotlib.pyplot as plt
 import os
 import streamlit as st
+nltk.download('punkt')
 
 
 #removing all $ signs

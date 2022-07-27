@@ -13,7 +13,7 @@ import streamlit as st
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import wordcloud
 from nltk.stem.snowball import SnowballStemmer
-
+nltk.download('punkt')
 
 
 def tokenize_and_stem(text):
