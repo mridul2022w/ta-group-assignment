@@ -5,10 +5,10 @@ import os
 from page.Cleaning import *
 from page.sa import *
 from page.token import *
+from page.dtm import *
 from page.ltm import *
+from page.metadata import *
 
-
-#st.header('Dashboard')
 def save_uploadedfile(uploadedfile):
     with open(os.path.join("temp.csv"),"wb") as f:
         f.write(uploadedfile.getbuffer())
@@ -48,20 +48,37 @@ def page4():
         st.write("Please upload data to proceed further")
 
 def page5():
+    st.markdown("DTM & IDF")
+    if os.path.isfile("temp_cleaned.csv"):
+        data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+        dtm_model(data)
+    else:
+        st.write("Please upload data to proceed further")
+
+def page6():
     st.markdown("LTM Model")
     if os.path.isfile("temp_cleaned.csv"):
         data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
-        call_ltm_model(data)
+        call_ltm(data)
     else:
-        st.write("Data not available")
+        st.write("Please upload data to proceed further")
 
+def page7():
+    st.markdown("Change Metadata")
+    if os.path.isfile("temp.csv"):
+        data = pd.read_csv("temp.csv",encoding='cp1252')
+        meta_data(data)
+    else:
+        st.write("Please upload data to proceed further")
 
 page_names_to_funcs = {
     "Upload": main_page,
+    "Metadata":page7,
     "Clean": page2,
     "Sentimental Analysis": page3,
     "Tokenization & Stemming": page4,
-    "LTM Model": page5
+    "DTM & IDF Model": page5,
+    "LTM Model":page6
 }
 
 def func_check():
