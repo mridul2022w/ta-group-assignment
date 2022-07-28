@@ -33,33 +33,45 @@ def page2():
 
 def page3():
     st.markdown("Sentimental Analysis")
-    if os.path.isfile("temp_cleaned.csv"):
-        data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
-        call_sa(data)
+    if os.path.isfile("temp.csv"):
+        if os.path.isfile("temp_cleaned.csv"):
+            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+            call_sa(data)
+        else:
+            st.write("Please clean data to proceed further")
     else:
         st.write("Please upload data to proceed further")
     
 def page4():
     st.markdown("Tokenization and Stemming")
-    if os.path.isfile("temp_cleaned.csv"):
-        data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
-        call_tokenization(data)
+    if os.path.isfile("temp.csv"):
+        if os.path.isfile("temp_cleaned.csv"):
+            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+            call_tokenization(data)
+        else:
+            st.write("Please clean data to proceed further")
     else:
         st.write("Please upload data to proceed further")
 
 def page5():
     st.markdown("DTM & IDF")
-    if os.path.isfile("temp_cleaned.csv"):
-        data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
-        dtm_model(data)
+    if os.path.isfile("temp.csv"):
+        if os.path.isfile("temp_cleaned.csv"):
+            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+            dtm_model(data)
+        else:
+            st.write("Please clean data to proceed further")
     else:
         st.write("Please upload data to proceed further")
 
 def page6():
     st.markdown("LTM Model")
-    if os.path.isfile("temp_cleaned.csv"):
-        data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
-        call_ltm(data)
+    if os.path.isfile("temp.csv"):
+        if os.path.isfile("temp_cleaned.csv"):
+            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+            call_ltm(data)
+        else:
+            st.write("Please clean data to proceed further")
     else:
         st.write("Please upload data to proceed further")
 
@@ -97,8 +109,8 @@ def func_check():
     else:
         if os.path.isfile("temp.csv"):
             os.remove("temp.csv")
-        # if os.path.isfile("temp_cleaned.csv"):
-        #     os.remove("temp_cleaned.csv")
+        if os.path.isfile("temp_cleaned.csv"):
+            os.remove("temp_cleaned.csv")
     
     
   
