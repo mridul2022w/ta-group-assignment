@@ -32,7 +32,7 @@ def page2():
         st.write("Please upload data to proceed further")
 
 def page3():
-    st.markdown("Sentimental Analysis")
+    st.markdown("## Sentimental Analysis")
     if os.path.isfile("temp.csv"):
         if os.path.isfile("temp_cleaned.csv"):
             data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
@@ -43,7 +43,7 @@ def page3():
         st.write("Please upload data to proceed further")
     
 def page4():
-    st.markdown("Tokenization and Stemming")
+    st.markdown("## Tokenization and Stemming")
     if os.path.isfile("temp.csv"):
         if os.path.isfile("temp_cleaned.csv"):
             data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
@@ -54,7 +54,7 @@ def page4():
         st.write("Please upload data to proceed further")
 
 def page5():
-    st.markdown("DTM & IDF")
+    st.markdown("## DTM & IDF")
     if os.path.isfile("temp.csv"):
         if os.path.isfile("temp_cleaned.csv"):
             data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
@@ -65,7 +65,7 @@ def page5():
         st.write("Please upload data to proceed further")
 
 def page6():
-    st.markdown("LTM Model")
+    st.markdown("## LTM Model")
     if os.path.isfile("temp.csv"):
         if os.path.isfile("temp_cleaned.csv"):
             data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
@@ -76,7 +76,7 @@ def page6():
         st.write("Please upload data to proceed further")
 
 def page7():
-    st.markdown("Change Metadata")
+    st.markdown("## Change Metadata")
     if os.path.isfile("temp.csv"):
         data = pd.read_csv("temp.csv",encoding='cp1252')
         meta_data(data)
