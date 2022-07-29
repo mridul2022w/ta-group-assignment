@@ -27,65 +27,84 @@ def main_page():
 
 def page2():
     st.markdown("## Data Cleaning")
-    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
-        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
-            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
-            st.write(data)
+    if "key" in st.session_state:
+        if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+            if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+                data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
+                st.write(data)
+            else:
+                data = pd.read_csv("temp"+str(st.session_state['key'])+".csv",encoding='cp1252')
+                call_the_cleaning_func(data)
         else:
-            data = pd.read_csv("temp"+str(st.session_state['key'])+".csv",encoding='cp1252')
-            call_the_cleaning_func(data)
+            st.write("Please upload data to proceed further")
     else:
         st.write("Please upload data to proceed further")
 
 def page3():
     st.markdown("## Sentimental Analysis")
-    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
-        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
-            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
-            call_sa(data)
+    if "key" in st.session_state:
+        if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+            if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+                data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
+                call_sa(data)
+            else:
+                st.write("Please clean data to proceed further")
         else:
-            st.write("Please clean data to proceed further")
+            st.write("Please upload data to proceed further")
     else:
         st.write("Please upload data to proceed further")
     
 def page4():
     st.markdown("## Tokenization and Stemming")
-    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
-        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
-            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
-            call_tokenization(data)
+    if "key" in st.session_state:
+        if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+            if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+                data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
+                call_tokenization(data)
+            else:
+                st.write("Please clean data to proceed further")
         else:
-            st.write("Please clean data to proceed further")
+            st.write("Please upload data to proceed further")
     else:
         st.write("Please upload data to proceed further")
+    
 
 def page5():
     st.markdown("## DTM & IDF")
-    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
-        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
-            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
-            dtm_model(data)
+    if "key" in st.session_state:
+        if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+            if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+                data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
+                dtm_model(data)
+            else:
+                st.write("Please clean data to proceed further")
         else:
-            st.write("Please clean data to proceed further")
+            st.write("Please upload data to proceed further")
     else:
         st.write("Please upload data to proceed further")
 
 def page6():
     st.markdown("## LTM Model")
-    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
-        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
-            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
-            call_ltm(data)
+    if "key" in st.session_state:
+        if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+            if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+                data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
+                call_ltm(data)
+            else:
+                st.write("Please clean data to proceed further")
         else:
-            st.write("Please clean data to proceed further")
+            st.write("Please upload data to proceed further")
     else:
         st.write("Please upload data to proceed further")
 
 def page7():
     st.markdown("## Change Metadata")
-    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
-        data = pd.read_csv("temp"+str(st.session_state['key'])+".csv",encoding='cp1252')
-        meta_data(data)
+    if "key" in st.session_state:
+        if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+            data = pd.read_csv("temp"+str(st.session_state['key'])+".csv",encoding='cp1252')
+            meta_data(data)
+        else:
+            st.write("Please upload data to proceed further")
     else:
         st.write("Please upload data to proceed further")
 
