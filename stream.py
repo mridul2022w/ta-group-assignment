@@ -120,6 +120,15 @@ page_names_to_funcs = {
 
 def func_check():
     
+    
+    st.write('')
+    with open('uber_reviews_itune.csv', 'rb') as f:
+        st.download_button(
+         label="Download data for this app",
+         data = f,
+         file_name='uber_reviews_itune.csv',
+         mime='text/csv')
+    
     uploaded_file = st.file_uploader("Choose a file",type=["csv"])
     
     if uploaded_file is not None:
@@ -142,7 +151,9 @@ def func_check():
   
 def main():
     selected_page = st.sidebar.selectbox("Select a page", page_names_to_funcs.keys())
-    page_names_to_funcs[selected_page]()
+    with st.spinner('Wait for it...'):
+        time.sleep(0.5)
+        page_names_to_funcs[selected_page]()
         
 if __name__ == '__main__':
     main()
