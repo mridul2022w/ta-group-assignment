@@ -8,9 +8,11 @@ from page.token import *
 from page.dtm import *
 from page.ltm import *
 from page.metadata import *
+import random
 
 def save_uploadedfile(uploadedfile):
-    with open(os.path.join("temp.csv"),"wb") as f:
+    st.session_state['key'] = random.randint(0,99999)
+    with open(os.path.join("temp"+str(st.session_state['key'])+".csv"),"wb") as f:
         f.write(uploadedfile.getbuffer())
     
     return st.success("Saved File:{}".format(uploadedfile.name))
@@ -18,24 +20,28 @@ def save_uploadedfile(uploadedfile):
 def main_page():
     st.markdown("## Data Upload")
     func_check()
+    
+    # if st.button("Next"):
+    #     st.session_state.runpage = page7()
+
 
 def page2():
     st.markdown("## Data Cleaning")
-    if os.path.isfile("temp.csv"):
-        if os.path.isfile("temp_cleaned.csv"):
-            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
             st.write(data)
         else:
-            data = pd.read_csv("temp.csv",encoding='cp1252')
+            data = pd.read_csv("temp"+str(st.session_state['key'])+".csv",encoding='cp1252')
             call_the_cleaning_func(data)
     else:
         st.write("Please upload data to proceed further")
 
 def page3():
     st.markdown("## Sentimental Analysis")
-    if os.path.isfile("temp.csv"):
-        if os.path.isfile("temp_cleaned.csv"):
-            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
             call_sa(data)
         else:
             st.write("Please clean data to proceed further")
@@ -44,9 +50,9 @@ def page3():
     
 def page4():
     st.markdown("## Tokenization and Stemming")
-    if os.path.isfile("temp.csv"):
-        if os.path.isfile("temp_cleaned.csv"):
-            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
             call_tokenization(data)
         else:
             st.write("Please clean data to proceed further")
@@ -55,9 +61,9 @@ def page4():
 
 def page5():
     st.markdown("## DTM & IDF")
-    if os.path.isfile("temp.csv"):
-        if os.path.isfile("temp_cleaned.csv"):
-            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
             dtm_model(data)
         else:
             st.write("Please clean data to proceed further")
@@ -66,9 +72,9 @@ def page5():
 
 def page6():
     st.markdown("## LTM Model")
-    if os.path.isfile("temp.csv"):
-        if os.path.isfile("temp_cleaned.csv"):
-            data = pd.read_csv("temp_cleaned.csv",encoding='cp1252')
+    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+        if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+            data = pd.read_csv("temp_cleaned"+str(st.session_state['key'])+".csv",encoding='cp1252')
             call_ltm(data)
         else:
             st.write("Please clean data to proceed further")
@@ -77,8 +83,8 @@ def page6():
 
 def page7():
     st.markdown("## Change Metadata")
-    if os.path.isfile("temp.csv"):
-        data = pd.read_csv("temp.csv",encoding='cp1252')
+    if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+        data = pd.read_csv("temp"+str(st.session_state['key'])+".csv",encoding='cp1252')
         meta_data(data)
     else:
         st.write("Please upload data to proceed further")
@@ -107,10 +113,11 @@ def func_check():
              save_uploadedfile(uploaded_file)
              st.dataframe(data)
     else:
-        if os.path.isfile("temp.csv"):
-            os.remove("temp.csv")
-        if os.path.isfile("temp_cleaned.csv"):
-            os.remove("temp_cleaned.csv")
+        if "key" in st.session_state:
+            if os.path.isfile("temp"+str(st.session_state['key'])+".csv"):
+                os.remove("temp"+str(st.session_state['key'])+".csv")
+            if os.path.isfile("temp_cleaned"+str(st.session_state['key'])+".csv"):
+                os.remove("temp_cleaned"+str(st.session_state['key'])+".csv")
     
     
   

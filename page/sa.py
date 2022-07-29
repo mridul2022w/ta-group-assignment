@@ -103,6 +103,6 @@ def call_sa(uber_review):
     emotion_share.set_index('emotion',inplace=True)
     
     st.write('% Share of score')
-    emotion_share
+    st.write(emotion_share)
     
     st.write('Done')

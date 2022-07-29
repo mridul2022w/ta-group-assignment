@@ -294,6 +294,6 @@ def call_the_cleaning_func(uber_data):
     uber_data_txt4=uber_data_txt4.rename(columns={'Review_new14':'Review_new'})
     st.write("Done")
     #exporting final file for further analysis
-    uber_data_txt4.to_csv("temp_cleaned.csv")
+    uber_data_txt4.to_csv("temp_cleaned"+str(st.session_state['key'])+".csv")
     st.write(uber_data_txt4)
 

@@ -191,14 +191,14 @@ def call_ltm(uber_review):
     # graph the perplexity fit and see
     st.write("Perplexity score")
     # Show graph
-    x = range(start1, limit1, step1)
-    plt.plot(x, perplexity_values)
-    plt.xlabel("Num Topics")
-    plt.ylabel("Perplexity score")
-    plt.legend(("perplexity_values"), loc='best')
-    plt.axvline(x=optimal_numTopics, color='r')
-    plt.show()
-    st.pyplot(plt)
+    # x = range(start1, limit1, step1)
+    # plt.plot(x, perplexity_values)
+    # plt.xlabel("Num Topics")
+    # plt.ylabel("Perplexity score")
+    # plt.legend(("perplexity_values"), loc='best')
+    # plt.axvline(x=optimal_numTopics, color='r')
+    # plt.show()
+    #st.pyplot(plt)
 
 
     # seems optimal num_topics is 10
